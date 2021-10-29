@@ -1,4 +1,4 @@
-module github.com/iver-wharf/wharf-api-communication
+module github.com/Alexamakans/wharf-api-communication
 
 go 1.17
 
