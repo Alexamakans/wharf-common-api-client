@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/iver-wharf/wharf-api-communication/pkg/apiclient"
+	"github.com/Alexamakans/wharf-api-communication/pkg/apiclient"
 	"github.com/iver-wharf/wharf-core/pkg/problem"
 )
 

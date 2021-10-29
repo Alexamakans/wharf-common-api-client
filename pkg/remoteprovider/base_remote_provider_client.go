@@ -1,6 +1,6 @@
 package remoteprovider
 
-import "github.com/iver-wharf/wharf-api-communication/pkg/apiclient"
+import "github.com/Alexamakans/wharf-api-communication/pkg/apiclient"
 
 type ProjectIdentifier = apiclient.ProjectIdentifier
 type WharfBranch = apiclient.WharfBranch
