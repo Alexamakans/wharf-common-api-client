@@ -15,13 +15,13 @@ type BaseClient struct {
 }
 
 func (c *BaseClient) FetchFile(project WharfProject, fileName string) ([]byte, error) {
-	project = StripProject(project)
+	project = stripProject(project)
 
 	return apiclient.DoPostBytes(c, c.ProviderURL, "api/project/file", &project, "filename", fileName)
 }
 
 func (c *BaseClient) FetchBranches(project WharfProject) ([]WharfBranch, error) {
-	project = StripProject(project)
+	project = stripProject(project)
 
 	var branches []WharfBranch
 	if err := apiclient.DoPostUnmarshal(&branches, c, c.ProviderURL, "api/project/branch", &project); err != nil {
