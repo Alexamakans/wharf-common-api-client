@@ -1,11 +1,7 @@
 package apiclient
 
-import (
-	"context"
-)
+import "context"
 
-// BaseClient implements a subset of the Client interface, and has
-// fields that are common to all current implementations of it.
 type BaseClient struct {
 	Context context.Context
 	Token   string
