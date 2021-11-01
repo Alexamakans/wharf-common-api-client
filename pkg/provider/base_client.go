@@ -19,7 +19,7 @@ func (c *BaseClient) FetchFile(project WharfProject, fileName string) ([]byte, e
 
 func (c *BaseClient) FetchBranches(project WharfProject) ([]WharfBranch, error) {
 	var branches []WharfBranch
-	if err := apiclient.DoPostUnmarshal(&branches, c, c.ProviderURL, "api/project/branch", &project); err != nil {
+	if err := apiclient.DoPostUnmarshal(&branches, c, c.ProviderURL, "api/project/branch", &project, "remoteProviderUrl"); err != nil {
 		return []WharfBranch{}, err
 	}
 
