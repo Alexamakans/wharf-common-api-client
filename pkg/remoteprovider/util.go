@@ -2,14 +2,9 @@ package remoteprovider
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/iver-wharf/wharf-core/pkg/ginutil"
 )
 
-func SetupClientFromContext(client Client, c *gin.Context) bool {
-	remoteProviderURL, ok := ginutil.RequireQueryString(c, "remoteProviderUrl")
-	if !ok {
-		return false
-	}
+func SetupClientFromContext(client Client, remoteProviderURL string, c *gin.Context) bool {
 	_, token, _ := c.Request.BasicAuth()
 	setupClient(client, c, remoteProviderURL, token)
 	return true

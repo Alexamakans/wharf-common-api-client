@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/Alexamakans/wharf-common-api-client/pkg/apiclient"
+	"github.com/iver-wharf/wharf-api/pkg/model/database"
 	"github.com/iver-wharf/wharf-core/pkg/problem"
 )
 
@@ -14,12 +15,16 @@ type BaseClient struct {
 }
 
 func (c *BaseClient) FetchFile(project WharfProject, fileName string) ([]byte, error) {
+	project = StripProject(project)
+
 	return apiclient.DoPostBytes(c, c.ProviderURL, "api/project/file", &project, "filename", fileName)
 }
 
 func (c *BaseClient) FetchBranches(project WharfProject) ([]WharfBranch, error) {
+	project = StripProject(project)
+
 	var branches []WharfBranch
-	if err := apiclient.DoPostUnmarshal(&branches, c, c.ProviderURL, "api/project/branch", &project, "remoteProviderUrl"); err != nil {
+	if err := apiclient.DoPostUnmarshal(&branches, c, c.ProviderURL, "api/project/branch", &project); err != nil {
 		return []WharfBranch{}, err
 	}
 
@@ -31,6 +36,9 @@ func (c *BaseClient) FetchProjectByGroupAndProjectName(groupName, projectName st
 	err := apiclient.DoPostUnmarshal(&project, c, c.ProviderURL, "api/project", WharfProject{
 		GroupName: groupName,
 		Name:      projectName,
+		Provider: &database.Provider{
+			URL: c.ProviderURL,
+		},
 	})
 	if err != nil {
 		prob := problem.Response{}
