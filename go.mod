@@ -1,4 +1,4 @@
-module github.com/Alexamakans/wharf-api-communication
+module github.com/Alexamakans/wharf-common-api-client
 
 go 1.17
 
