@@ -14,7 +14,7 @@ type Client interface {
 	// of a ProjectIdentifier object.
 	//
 	// The order of the values are up to the implementation.
-	WharfProjectToIdentifier(project apiclient.WharfProject) apiclient.ProjectIdentifier
+	WharfProjectToIdentifier(project WharfProject) ProjectIdentifier
 }
 
 // Client is to be used for communication between a Wharf provider and

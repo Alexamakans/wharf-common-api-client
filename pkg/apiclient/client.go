@@ -8,10 +8,6 @@ import (
 // Specifically, this is a collection of methods commonly used by the wharf API
 // when communicating with any of the wharf providers, and by the wharf providers when
 // communicating with the remote provider.
-//
-// Communications
-//   wharf-api -> wharf-provider
-//   wharf-provider -> remote provider (e.g. AzureDevOps, GitHub, GitLab)
 type Client interface {
 	// FetchFile fetches a file from the API.
 	FetchFile(projectIdentifiers ProjectIdentifier, fileName string) ([]byte, error)
