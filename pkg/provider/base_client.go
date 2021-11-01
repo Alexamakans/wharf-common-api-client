@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/Alexamakans/wharf-common-api-client/pkg/apiclient"
-	"github.com/iver-wharf/wharf-api/pkg/model/database"
 	"github.com/iver-wharf/wharf-core/pkg/problem"
 )
 
@@ -31,22 +30,16 @@ func (c *BaseClient) FetchBranches(project WharfProject) ([]WharfBranch, error) 
 	return branches, nil
 }
 
-func (c *BaseClient) FetchProjectByGroupAndProjectName(groupName, projectName string) (WharfProject, error) {
-	var project WharfProject
-	err := apiclient.DoPostUnmarshal(&project, c, c.ProviderURL, "api/project", WharfProject{
-		GroupName: groupName,
-		Name:      projectName,
-		Provider: &database.Provider{
-			URL: c.ProviderURL,
-		},
-	})
+func (c *BaseClient) FetchProjectByGroupAndProjectName(project WharfProject) (WharfProject, error) {
+	var resProject WharfProject
+	err := apiclient.DoPostUnmarshal(&resProject, c, c.ProviderURL, "api/project", stripProject(project))
 	if err != nil {
 		prob := problem.Response{}
 		if ok := errors.As(err, &prob); ok {
 			return WharfProject{}, fmt.Errorf("%s: %w", prob.Detail, prob)
 		}
-		return WharfProject{}, fmt.Errorf("failed getting project named %s in %s: %w", projectName, groupName, err)
+		return WharfProject{}, fmt.Errorf("failed getting project named %s in %s: %w", project.Name, project.GroupName, err)
 	}
 
-	return project, nil
+	return resProject, nil
 }

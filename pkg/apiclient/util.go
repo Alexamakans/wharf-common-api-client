@@ -97,7 +97,7 @@ func DoPostBytes(c Client, baseURL, path string, bodyPtr interface{}, queryParam
 // path, using Basic Auth.
 //
 // Query parameters are interleaved like ( "name_1", "value_1", "name_2", "value_2" ).
-func NewPost(c Client, baseURL string, path string, bodyPtr interface{}, queryParams ...string) (*http.Request, error) {
+func NewPost(c Client, baseURL, path string, bodyPtr interface{}, queryParams ...string) (*http.Request, error) {
 	postBody, err := json.Marshal(bodyPtr)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal object of type %T", bodyPtr)
