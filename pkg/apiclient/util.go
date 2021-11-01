@@ -194,15 +194,11 @@ func DoRespAsBytes(c Client, req *http.Request, bodyPtr interface{}, queryParams
 }
 
 func RequireProject(c *gin.Context) (WharfProject, bool) {
-	boundJSON := struct {
-		Project WharfProject `json:"project"`
-	}{}
-
-	err := c.ShouldBindJSON(&boundJSON)
+	var project WharfProject
+	err := c.ShouldBindJSON(&project)
 	if err != nil {
 		ginutil.WriteInvalidBindError(c, err, "Unable to bind WharfProject JSON.")
 		return WharfProject{}, false
 	}
-
-	return boundJSON.Project, true
+	return project, true
 }
