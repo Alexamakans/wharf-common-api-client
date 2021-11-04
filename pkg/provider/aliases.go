@@ -1,9 +1,9 @@
 package provider
 
-import "github.com/iver-wharf/wharf-api/pkg/model/database"
+import "github.com/Alexamakans/wharf-common-api-client/pkg/apiclient"
 
-// WharfProject is an alias for wharf-api's database.Project.
-type WharfProject = database.Project
+// WharfProject is an alias for apiclient's WharfProject.
+type WharfProject = apiclient.WharfProject
 
-// WharfBranch is an alias for wharf-api's database.Branch.
-type WharfBranch = database.Branch
+// WharfBranch is an alias for apiclient's WharfBranch.
+type WharfBranch = apiclient.WharfBranch
