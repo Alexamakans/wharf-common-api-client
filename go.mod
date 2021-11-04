@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.4
-	github.com/iver-wharf/wharf-api v0.0.0-20211022062618-90bebcf4e5a1
+	github.com/iver-wharf/wharf-api v0.0.0-20211021131848-46403dfc03dd
 	github.com/iver-wharf/wharf-core v1.2.0
 )
 
