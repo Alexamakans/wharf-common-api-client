@@ -11,15 +11,13 @@ import (
 
 type BaseClient struct {
 	apiclient.BaseClient
-	ProviderURL  string
-	APIURLPrefix string
+	ProviderURL string
 }
 
-func NewClient(ctx context.Context, token, apiURLPrefix, providerURL string) *BaseClient {
+func NewClient(ctx context.Context, token, providerURL string) *BaseClient {
 	return &BaseClient{
-		BaseClient:   *apiclient.NewClient(ctx, token),
-		APIURLPrefix: apiURLPrefix,
-		ProviderURL:  providerURL,
+		BaseClient:  *apiclient.NewClient(ctx, token),
+		ProviderURL: providerURL,
 	}
 }
 
