@@ -1,6 +1,8 @@
 package remoteprovider
 
 import (
+	"context"
+
 	"github.com/Alexamakans/wharf-common-api-client/pkg/apiclient"
 )
 
@@ -9,6 +11,13 @@ import (
 type BaseClient struct {
 	apiclient.BaseClient
 	RemoteProviderURL string
+}
+
+func NewClient(ctx context.Context, token, apiURLPrefix, remoteProviderURL string) *BaseClient {
+	return &BaseClient{
+		BaseClient:        *apiclient.NewClient(ctx, token, apiURLPrefix),
+		RemoteProviderURL: remoteProviderURL,
+	}
 }
 
 func (c *BaseClient) SetRemoteProviderURL(remoteProviderURL string) {

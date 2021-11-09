@@ -3,8 +3,15 @@ package apiclient
 import "context"
 
 type BaseClient struct {
-	Context context.Context
-	Token   string
+	Context      context.Context
+	Token        string
+	APIURLPrefix string
+}
+
+func NewClient(ctx context.Context, token, apiURLPrefix string) *BaseClient {
+	return &BaseClient{
+		APIURLPrefix: apiURLPrefix,
+	}
 }
 
 func (c *BaseClient) GetContext() context.Context {

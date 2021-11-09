@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"context"
 	"errors"
 	"fmt"
 
@@ -11,6 +12,13 @@ import (
 type BaseClient struct {
 	apiclient.BaseClient
 	ProviderURL string
+}
+
+func NewClient(ctx context.Context, token, apiURLPrefix, providerURL string) *BaseClient {
+	return &BaseClient{
+		BaseClient:  *apiclient.NewClient(ctx, token, apiURLPrefix),
+		ProviderURL: providerURL,
+	}
 }
 
 func (c *BaseClient) FetchFile(project WharfProject, fileName string) ([]byte, error) {
